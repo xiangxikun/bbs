@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>SongTaste-修改个人资料</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/login.css" />
+		<!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<!--导航条-->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					 aria-expanded="false">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="./index.html">SongTaste</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span
+								 class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="homepage.html">个人主页</a>
+									<a href="usermodify.html">修改个人信息</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="./logout.do">退出</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="./about.html">关于</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="./contact.html">联系</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!--修改个人资料-->
+		<form class="form-signin">
+			<h2 class="form-signin-heading">修改个人资料</h2>
+			<div class="form-group">
+				<label for="exampleInputEmail2">用户名修改</label>
+				<span id="" class="span-tip1"></span>
+				<input type="text" name="username" class="form-control margin-bottom-10" placeholder="账号" autofocus maxlength="10">
+				<button type="submit" class="btn btn-primary button-username">确认修改</button>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail2">修改密码</label>
+				<span id="" class="span-tip2"></span>
+				<input type="password" name="password" class="form-control" placeholder="密码" maxlength="15">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail2">确认密码</label>
+				<span id="" class="span-tip3"></span>
+				<input type="password" name="password1" class="form-control" placeholder="密码" maxlength="15">
+				<button type="submit" class="btn btn-primary button-password">确认修改</button>
+			</div>
+		</form>
+
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/usermodify.min.js"></script>
+	</body>
+
+</html>

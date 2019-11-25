@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SongTaste-关于</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/about.css" />
+
+	<!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+	<!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+	<!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+	<!--导航条-->
+	<!-- <a href="./deleteComment.do?commentId=">删除</a> -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="./index.html">SongTaste</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false">用户名 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="homepage.html">个人主页</a>
+							</li>
+							<li>
+								<a href="usermodify.html">修改个人信息</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="./logout.do">退出</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active">
+						<a href="./about.html">关于</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="./contact.html">联系</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!--关于巨幕title-->
+	<header class="jumbotron subhead">
+		<div class="container">
+			<h1>SongTaste</h1>
+			<p class="lead">用音乐倾听彼此，热心互助，无私分享，推荐最好的音乐</p>
+		</div>
+	</header>
+
+	<!--关于内容-->
+	<div class="container">
+		<div class="page-header">
+			<h1>关于我们</h1>
+			<p class="lead">SongTaste是一个音乐分享的互联网产品。用户在这里可以试听歌曲，并互相交流、推荐歌曲。</p>
+		</div>
+		<h3>一起分享吧</h3>
+		<p class="lead">把音乐和爱心传递给每一个人</p>
+		<p class="lead">打开电脑，可能你的第一件事情是戴上耳机，打开音乐播放器。可是寻找你喜欢的音乐并不是件容易的事情，找到那些在音乐品味上与你志同道合的朋友或许更难。</p>
+		<p class="lead">每天你都会发现新的朋友，你们听着同样的音乐，甚至喝着同样的咖啡。</p>
+	</div>
+
+	<footer>
+		<p></p>
+	</footer>
+
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+		let cookies = document.cookie.split(';');
+		console.log(cookies);
+		let username = null;
+		let password = null;
+
+		cookies.forEach(cookie => {
+			if (cookie.split('=')[0].trim() == 'uname') {
+				username = cookie.split('=')[1].trim();
+				username = decodeURIComponent(username);
+			} else if (cookie.split('=')[0].trim() == 'pwd') {
+				password = cookie.split('=')[1].trim();
+				password = decodeURIComponent(password);
+			}
+		});
+
+		$('a[data-toggle=dropdown]').html(username + '<span class="caret"></span>');
+
+		$('footer>p').html('&copy; CopyRight 向南飞 ' + new Date().getFullYear());
+	</script>
+</body>
+
+</html>

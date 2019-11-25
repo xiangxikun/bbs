@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人主页</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/homepage.css" />
+		<!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+ 	<![endif]-->
+	</head>
+
+	<body>
+		<!--导航条-->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					 aria-expanded="false">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="./index.html">SongTaste</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+							 aria-expanded="false"><span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								
+								<li><a href="homepage.html">个人主页</a></li>
+								<li><a href="usermodify.html">修改个人信息</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="./logout.do">退出</a></li>
+					</ul>
+					<ul class="nav navbar-nav  navbar-right">
+						<li><a href="./about.html">关于</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="./contact.html">联系</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!--关于巨幕title-->
+		<header class="jumbotron subhead">
+			<div class="container">
+				<h1>历史发表动态</h1>
+			</div>
+		</header>
+
+		<!--内容-->
+		<div class="container">
+			<div class="content"></div>
+		</div>
+
+		<!--footer-->
+		<footer>
+			<p>&copy; CopyRight 向南飞2019</p>
+		</footer>
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+					</div>
+					<div class="modal-body">...</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				let cookies = document.cookie.split(';');
+				let username = null;
+				let password = null;
+
+				cookies.forEach(cookie => {
+					if (cookie.split('=')[0].trim() == 'uname') {
+						username = cookie.split('=')[1].trim();
+						username = decodeURIComponent(username);
+					} else if (cookie.split('=')[0].trim() == 'pwd') {
+						password = cookie.split('=')[1].trim();
+						password = decodeURIComponent(password);
+					}
+				});
+
+				$('a[data-toggle=dropdown]').html(username + '<span class="caret"></span>');
+
+				console.log(username);
+				// 获取所有博文
+				$.ajax({
+					type: "post",
+					data: {
+						'username': username
+					},
+					url: "./getAllPost.do?target=user",
+					success: function(data) {
+						if (data.length < 1) {
+							$('.content').html(
+								'<p style="text-align: center;font-size: 50px;">暂时没有发表帖子...</p>'
+							);
+						}
+						displayPost(data);
+						bindDeleteEvent();
+					},
+					error: function() {
+						$('.content').html(
+							'<p style="text-align: center;font-size: 50px;"><i class="glyphicon glyphicon-exclamation-sign"></i>网络暂时出了点状况...</p>'
+						);
+					}
+				});
+
+				let i = 0;
+				$('button').prev().each(function() {
+					$(this).attr('id', i++);
+				});
+
+
+				function bindDeleteEvent() {
+					// 删除按钮
+					$('button').click(function() {
+						let postId = $(this).attr('postId');
+						$.get({
+							url: './delete.do?target=post',
+							data: {
+								'postId': postId
+							},
+							success: function(data) {
+								window.location.reload();
+							},
+							error: function(data) {
+
+							}
+						});
+					});
+				}
+
+				function displayPost(posts) {
+					for (let i = 0; i < posts.length; i++) {
+						let time = new Date(posts[i].createdTime).toLocaleString();
+						$('.content').append(
+							'<div class="items"><p class="margin-left-10">' + time + '</p><span id="">' + posts[i].text +
+							'</span><button class="btn btn-danger" postId="' + posts[i].postId + '">删除</button><br/><br/></div>'
+						);
+					}
+				}
+
+			})
+		</script>
+	</body>
+
+</html>

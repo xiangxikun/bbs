@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SongTaste-注册</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/login.css" />
+	<!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<form class="form-signin" name="form" action="./register.do" method="post">
+			<h2 class="register-h2">注册</h2>
+			<span id="" class="span-tips"></span>
+			<input type="text" name="username" class="form-control margin-bottom-10" placeholder="输入用户名" autofocus
+				maxlength="10">
+			<input type="password" name="password" class="form-control" placeholder="输入密码" maxlength="15">
+			<input type="password" name="password1" class="form-control" placeholder="确认密码" maxlength="15">
+			<button class="btn btn-lg btn-primary btn-block">注册</button>
+			<p class="text-right">
+				<a href="./login.html">已有账号,返回登录</a>
+			</p>
+		</form>
+
+	</div>
+
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/register.min.js"></script>
+</body>
+
+</html>
